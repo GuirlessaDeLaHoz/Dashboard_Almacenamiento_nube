@@ -1,5 +1,6 @@
-pandas==2.2.2
-streamlit==1.32.2
-plotly==5.19.0
-psycopg2-binary==2.9.9
+streamlit>=1.18
+pandas
+plotly
+psycopg2-binary
+
 
