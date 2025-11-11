@@ -10,22 +10,15 @@ st.set_page_config(page_title="Dashboard Cáncer Infantil", layout="wide")
 st.title("Dashboard de Cáncer Infantil en Risaralda")
 
 # -----------------------------------------
-# CARGAR DATOS
+# CARGAR DATOS DESDE CSV
 # -----------------------------------------
 @st.cache_data
 def cargar_datos():
-    conn = psycopg2.connect(
-        host="localhost",
-        dbname="basedatos",
-        user="postgres",
-        password="Gade3005",
-        port="5432"
-    )
-    df = pd.read_sql("SELECT * FROM taller_data;", conn)
-    conn.close()
+    df = pd.read_csv("Datos_Postgrade.csv", encoding="utf-8")
     return df
 
 df = cargar_datos()
+
 df["Ano"] = df["Ano"].str.replace(",", "").astype(int)
 
 # Estándar: quitar espacios en nombres
@@ -136,3 +129,4 @@ col2.plotly_chart(fig_stack, use_container_width=True)
 # -----------------------------------------
 st.subheader("Datos filtrados")
 st.dataframe(df_tipos_year, use_container_width=True)
+
